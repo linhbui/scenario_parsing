@@ -31,9 +31,9 @@ class ScenarioParser
             subject = words[1...idx].join(' ')
             subject_action = word
             remaining = words[idx+1..-1].dup
-            if index_of_with = remaining.find_index('with')
-              other_object = remaining[0...index_of_with].join(' ')
-              object_acted_upon = remaining[index_of_with+1..-1].join(' ')
+            if index_of_preposition = remaining.find_index('with') || remaining.find_index('to')
+              other_object = remaining[0...index_of_preposition].join(' ')
+              object_acted_upon = remaining[index_of_preposition+1..-1].join(' ')
               row += [subject, subject_action, other_object, object_acted_upon]
             else
               row += [subject, subject_action, remaining.join(' ')]
