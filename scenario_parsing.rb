@@ -14,7 +14,7 @@ class ScenarioParser
     CSV.open(csv_file_name, "wb") do |csv|
       csv << ['#', 'Subject', 'Subject Action', 'Other Data/Objects', 'Object Acted Upon']
       File.foreach(file_name) do |line|
-        words = line.tr(',', '').gsub(/[Tt]he /, '').split(' ')
+        words = line.gsub(/[,.]/,'').gsub(/[Tt]he /, '').split(' ')
         row = [words[0]]
 
         if %w(If For else).include?(words[1])
