@@ -9,6 +9,10 @@ Your scenarios have to be written in a very structured format for this to work. 
 ```
 [subject, all lowercase, singular] [verb, 3rd person] [other data/objects] with/to [object acted upon]
 ```
+Example:
+```
+checkout GUI checks out call numbers with checkout controller
+```
 
 # How to use:
 
