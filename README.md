@@ -6,7 +6,9 @@ This will parse the txt file you give it and you have the number, subject, actio
 
 # Precondition
 Your scenarios have to be written in a very structured format for this to work. The recommended format is:
+```
 [subject, all lowercase, singular] [verb, 3rd person] [other data/objects] with/to [object acted upon]
+```
 
 # How to use:
 
