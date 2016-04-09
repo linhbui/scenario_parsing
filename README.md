@@ -4,6 +4,10 @@ Doing repetitive stuffs (turning scenario into scenario tables is a great exampl
 
 This will parse the txt file you give it and you have the number, subject, actions columns done, but you will still have to do 'Other Data/Objects' and 'Object Acted Upon' columns
 
+# Precondition
+Your scenarios have to be written in a very structured format for this to work. The recommended format is:
+[subject, all lowercase, singular] [verb, 3rd person] [other data/objects] with/to [object acted upon]
+
 # How to use:
 
 0. Download and install ruby (if your computer doesn’t have it, which I doubt) 
