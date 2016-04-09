@@ -14,7 +14,8 @@ class ScenarioParser
     CSV.open(csv_file_name, "wb") do |csv|
       csv << ['#', 'Subject', 'Subject Action', 'Other Data/Objects', 'Object Acted Upon']
       File.foreach(file_name) do |line|
-        words = line.gsub(/[,.]/,'').gsub(/[Tt]he /, '').split(' ')
+        words = line.tr(',','').gsub(/[Tt]he /, '').split(' ')
+        words[-1] = words[-1].tr('.', '')
         row = [words[0]]
 
         if %w(If For else).include?(words[1])
@@ -25,11 +26,18 @@ class ScenarioParser
 
         words.each_with_index do |word, idx|
           next if idx == 0
-          if word[-1] == 's' && word[0].downcase == word[0]
+          if word[-1] == 's'
+            has_processed_verb = true
             subject = words[1...idx].join(' ')
             subject_action = word
-            remaining = words[idx+1..-1].join(' ')
-            row += [subject, subject_action, remaining]
+            remaining = words[idx+1..-1].dup
+            if index_of_with = remaining.find_index('with')
+              other_object = remaining[0...index_of_with].join(' ')
+              object_acted_upon = remaining[index_of_with+1..-1].join(' ')
+              row += [subject, subject_action, other_object, object_acted_upon]
+            else
+              row += [subject, subject_action, remaining.join(' ')]
+            end
             csv << row
             break
           end
